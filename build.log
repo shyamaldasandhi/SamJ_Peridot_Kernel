@@ -1,0 +1,177 @@
+/home/juan/Kernel/peridot/Makefile:1569: warning: overriding recipe for target 'dtbs'
+/home/juan/Kernel/peridot/Makefile:1259: warning: ignoring old recipe for target 'dtbs'
+/home/juan/Kernel/peridot/Makefile:1584: warning: overriding recipe for target 'dtbs_install'
+/home/juan/Kernel/peridot/Makefile:1269: warning: ignoring old recipe for target 'dtbs_install'
+/home/juan/Kernel/peridot/Makefile:1594: warning: overriding recipe for target 'scripts_dtc'
+/home/juan/Kernel/peridot/Makefile:1279: warning: ignoring old recipe for target 'scripts_dtc'
+/home/juan/Kernel/peridot/Makefile:1602: warning: overriding recipe for target 'dt_binding_check'
+/home/juan/Kernel/peridot/Makefile:1287: warning: ignoring old recipe for target 'dt_binding_check'
+  GEN     Makefile
+  HOSTCC  scripts/basic/fixdep
+  UPD     include/config/kernel.release
+  UPD     include/generated/utsrelease.h
+  CALL    ../scripts/checksyscalls.sh
+  CC      init/version.o
+  CC      kernel/sys.o
+  AR      init/built-in.a
+  CC      net/ethtool/ioctl.o
+  CC      drivers/base/firmware_loader/fallback_table.o
+  CC      drivers/base/firmware_loader/main.o
+  CC      kernel/sched/cpufreq_schedutil.o
+  CC      drivers/base/firmware_loader/fallback.o
+  CC      drivers/base/firmware_loader/sysfs.o
+  CC      drivers/base/firmware_loader/builtin/main.o
+  AR      drivers/base/firmware_loader/builtin/built-in.a
+  CC      kernel/module/main.o
+  AR      kernel/sched/built-in.a
+  AR      drivers/base/firmware_loader/built-in.a
+  AR      drivers/base/built-in.a
+  AR      net/ethtool/built-in.a
+  AR      net/built-in.a
+  CHK     kernel/kheaders_data.tar.xz
+  AR      drivers/built-in.a
+  CC      kernel/trace/trace.o
+  GEN     kernel/kheaders_data.tar.xz
+  AR      kernel/module/built-in.a
+  AR      kernel/trace/built-in.a
+  AR      kernel/built-in.a
+  CC [M]  kernel/kheaders.o
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  OBJCOPY modules.builtin.modinfo
+  GEN     modules.builtin
+  GEN     .vmlinux.objs
+  MODPOST Module.symvers
+  GEN     vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  CC [M]  arch/arm64/geniezone/gzvm.mod.o
+  CC [M]  drivers/bluetooth/btbcm.mod.o
+  CC [M]  drivers/bluetooth/btqca.mod.o
+  CC [M]  drivers/bluetooth/btsdio.mod.o
+  CC [M]  drivers/bluetooth/hci_uart.mod.o
+  CC [M]  drivers/net/can/dev/can-dev.mod.o
+  CC [M]  drivers/net/can/slcan/slcan.mod.o
+  LD      .tmp_vmlinux.kallsyms1
+  CC [M]  drivers/net/can/vcan.mod.o
+  CC [M]  drivers/net/mii.mod.o
+  CC [M]  drivers/net/ppp/bsd_comp.mod.o
+  CC [M]  drivers/net/ppp/ppp_deflate.mod.o
+  CC [M]  drivers/net/ppp/ppp_generic.mod.o
+  CC [M]  drivers/net/ppp/ppp_mppe.mod.o
+  CC [M]  drivers/net/ppp/pppox.mod.o
+  CC [M]  drivers/net/ppp/pptp.mod.o
+  CC [M]  drivers/net/slip/slhc.mod.o
+  CC [M]  drivers/net/usb/aqc111.mod.o
+  CC [M]  drivers/net/usb/asix.mod.o
+  CC [M]  drivers/net/usb/ax88179_178a.mod.o
+  CC [M]  drivers/net/usb/cdc_eem.mod.o
+  NM      .tmp_vmlinux.kallsyms1.syms
+  CC [M]  drivers/net/usb/cdc_ether.mod.o
+  KSYMS   .tmp_vmlinux.kallsyms1.S
+  CC [M]  drivers/net/usb/cdc_ncm.mod.o
+  CC [M]  drivers/net/usb/r8152.mod.o
+  CC [M]  drivers/net/usb/r8153_ecm.mod.o
+  CC [M]  drivers/net/usb/rtl8150.mod.o
+  CC [M]  drivers/net/usb/usbnet.mod.o
+  CC [M]  drivers/net/wwan/wwan.mod.o
+  CC [M]  drivers/usb/class/cdc-acm.mod.o
+  CC [M]  drivers/usb/serial/ftdi_sio.mod.o
+  CC [M]  drivers/usb/serial/usbserial.mod.o
+  CC [M]  kernel/kheaders.mod.o
+  CC [M]  lib/crypto/libarc4.mod.o
+  CC [M]  net/6lowpan/6lowpan.mod.o
+  CC [M]  net/6lowpan/nhc_dest.mod.o
+  CC [M]  net/6lowpan/nhc_fragment.mod.o
+  AS      .tmp_vmlinux.kallsyms1.o
+  CC [M]  net/6lowpan/nhc_hop.mod.o
+  CC [M]  net/6lowpan/nhc_ipv6.mod.o
+  CC [M]  net/6lowpan/nhc_mobility.mod.o
+  CC [M]  net/6lowpan/nhc_routing.mod.o
+  CC [M]  net/6lowpan/nhc_udp.mod.o
+  CC [M]  net/8021q/8021q.mod.o
+  CC [M]  net/bluetooth/bluetooth.mod.o
+  CC [M]  net/bluetooth/hidp/hidp.mod.o
+  CC [M]  net/bluetooth/rfcomm/rfcomm.mod.o
+  CC [M]  net/can/can-bcm.mod.o
+  CC [M]  net/can/can-gw.mod.o
+  CC [M]  net/can/can-raw.mod.o
+  CC [M]  net/can/can.mod.o
+  CC [M]  net/ieee802154/6lowpan/ieee802154_6lowpan.mod.o
+  CC [M]  net/ieee802154/ieee802154.mod.o
+  LD      .tmp_vmlinux.kallsyms2
+  CC [M]  net/ieee802154/ieee802154_socket.mod.o
+  CC [M]  net/l2tp/l2tp_core.mod.o
+  CC [M]  net/l2tp/l2tp_ppp.mod.o
+  CC [M]  net/mac802154/mac802154.mod.o
+  CC [M]  net/nfc/nfc.mod.o
+  CC [M]  net/rfkill/rfkill.mod.o
+  CC [M]  net/tipc/diag.mod.o
+  CC [M]  net/tipc/tipc.mod.o
+  LD [M]  arch/arm64/geniezone/gzvm.ko
+  LD [M]  drivers/bluetooth/btbcm.ko
+  LD [M]  drivers/bluetooth/btqca.ko
+  LD [M]  drivers/bluetooth/btsdio.ko
+  LD [M]  drivers/bluetooth/hci_uart.ko
+  LD [M]  drivers/net/can/dev/can-dev.ko
+  NM      .tmp_vmlinux.kallsyms2.syms
+  LD [M]  drivers/net/can/vcan.ko
+  LD [M]  drivers/net/can/slcan/slcan.ko
+  LD [M]  drivers/net/mii.ko
+  LD [M]  drivers/net/ppp/bsd_comp.ko
+  LD [M]  drivers/net/ppp/ppp_deflate.ko
+  LD [M]  drivers/net/ppp/ppp_mppe.ko
+  LD [M]  drivers/net/ppp/ppp_generic.ko
+  LD [M]  drivers/net/ppp/pppox.ko
+  LD [M]  drivers/net/ppp/pptp.ko
+  LD [M]  drivers/net/slip/slhc.ko
+  LD [M]  drivers/net/usb/aqc111.ko
+  LD [M]  drivers/net/usb/asix.ko
+  LD [M]  drivers/net/usb/ax88179_178a.ko
+  LD [M]  drivers/net/usb/cdc_eem.ko
+  LD [M]  drivers/net/usb/cdc_ether.ko
+  LD [M]  drivers/net/usb/r8152.ko
+  LD [M]  drivers/net/usb/cdc_ncm.ko
+  LD [M]  drivers/net/usb/r8153_ecm.ko
+  LD [M]  drivers/net/usb/rtl8150.ko
+  LD [M]  drivers/net/usb/usbnet.ko
+  LD [M]  drivers/net/wwan/wwan.ko
+  LD [M]  drivers/usb/class/cdc-acm.ko
+  LD [M]  drivers/usb/serial/ftdi_sio.ko
+  LD [M]  drivers/usb/serial/usbserial.ko
+  LD [M]  kernel/kheaders.ko
+  LD [M]  lib/crypto/libarc4.ko
+  LD [M]  net/6lowpan/6lowpan.ko
+  LD [M]  net/6lowpan/nhc_dest.ko
+  LD [M]  net/6lowpan/nhc_fragment.ko
+  LD [M]  net/6lowpan/nhc_hop.ko
+  LD [M]  net/6lowpan/nhc_ipv6.ko
+  LD [M]  net/6lowpan/nhc_mobility.ko
+  LD [M]  net/6lowpan/nhc_routing.ko
+  LD [M]  net/6lowpan/nhc_udp.ko
+  LD [M]  net/8021q/8021q.ko
+  LD [M]  net/bluetooth/bluetooth.ko
+  LD [M]  net/bluetooth/hidp/hidp.ko
+  LD [M]  net/bluetooth/rfcomm/rfcomm.ko
+  LD [M]  net/can/can-bcm.ko
+  LD [M]  net/can/can-gw.ko
+  LD [M]  net/can/can-raw.ko
+  LD [M]  net/can/can.ko
+  LD [M]  net/ieee802154/6lowpan/ieee802154_6lowpan.ko
+  LD [M]  net/ieee802154/ieee802154.ko
+  LD [M]  net/ieee802154/ieee802154_socket.ko
+  LD [M]  net/l2tp/l2tp_core.ko
+  LD [M]  net/l2tp/l2tp_ppp.ko
+  LD [M]  net/mac802154/mac802154.ko
+  LD [M]  net/nfc/nfc.ko
+  LD [M]  net/rfkill/rfkill.ko
+  LD [M]  net/tipc/diag.ko
+  KSYMS   .tmp_vmlinux.kallsyms2.S
+  LD [M]  net/tipc/tipc.ko
+  AS      .tmp_vmlinux.kallsyms2.o
+  LD      vmlinux
+  NM      System.map
+  SORTTAB vmlinux
+  OBJCOPY arch/arm64/boot/Image
+  GZIP    arch/arm64/boot/Image.gz
