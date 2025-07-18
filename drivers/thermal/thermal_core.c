@@ -374,25 +374,16 @@ static void handle_thermal_trip(struct thermal_zone_device *tz, int trip)
 		handle_non_critical_trips(tz, trip);
 }
 
-static void update_temperature(struct thermal_zone_device *tz)
+static void update_temperature(struct thermal_zone_device *tz) /*SAM*/   //Modified toalways read 25C
 {
-	int temp, ret;
-
-	ret = __thermal_zone_get_temp(tz, &temp);
-	if (ret) {
-		if (ret != -EAGAIN)
-			dev_warn(&tz->device,
-				 "failed to read out thermal zone (%d)\n",
-				 ret);
-		return;
-	}
-
-	tz->last_temperature = tz->temperature;
-	tz->temperature = temp;
-
-	trace_thermal_temperature(tz);
-
-	thermal_genl_sampling_temp(tz->id, temp);
+    // Always report 25°C (adjust this value as needed)
+    const int fixed_temp = 25000; // In millidegrees Celsius
+    
+    tz->last_temperature = tz->temperature;
+    tz->temperature = fixed_temp;
+    
+    trace_thermal_temperature(tz);
+    thermal_genl_sampling_temp(tz->id, fixed_temp);
 }
 
 static void thermal_zone_device_init(struct thermal_zone_device *tz)

@@ -7,6 +7,7 @@ export LD_LIBRARY_PATH="$HOME/tc/clang/lib64:$LD_LIBRARY_PATH"
 
 OUT_DIR="out"
 DEFCONFIG="peridot_defconfig"
+KCFLAGS_OPTIMIZATION="-O3"
 JOBS=$(nproc)
 
 ARGS=(
@@ -24,5 +25,4 @@ ARGS=(
 
 make "${ARGS[@]}" "$DEFCONFIG"
 make -C "$OUT_DIR" "${ARGS[@]}" HOSTCC="ccache gcc" HOSTCXX="ccache g++" olddefconfig
-make "${ARGS[@]}" Image.gz
-
+make "${ARGS[@]}" KCFLAGS="$KCFLAGS_OPTIMIZATION" Image.gz

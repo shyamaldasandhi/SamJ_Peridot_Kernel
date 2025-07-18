@@ -136,13 +136,15 @@ int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
 
 	memset(&param, 0, sizeof(param));
 	param.pdev_id = ar->pdev->pdev_id;
-	param.enable = throttle_state ? 1 : 0;
+	/*param.enable = throttle_state ? 1 : 0;*/ /*SAM*/ //diable thermal
+	param.enable = 0; // Force disable throttling
 	param.dc = ATH11K_THERMAL_DEFAULT_DUTY_CYCLE;
 	param.dc_per_event = 0xFFFFFFFF;
 
 	param.levelconf[0].tmplwm = ATH11K_THERMAL_TEMP_LOW_MARK;
 	param.levelconf[0].tmphwm = ATH11K_THERMAL_TEMP_HIGH_MARK;
-	param.levelconf[0].dcoffpercent = throttle_state;
+	/*param.levelconf[0].dcoffpercent = throttle_state;*/    /*SAM*/
+	param.levelconf[0].dcoffpercent = 0; // Override to 0%
 	param.levelconf[0].priority = 0; /* disable all data tx queues */
 
 	ret = ath11k_wmi_send_thermal_mitigation_param_cmd(ar, &param);
@@ -154,9 +156,9 @@ int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
 	return ret;
 }
 
-int ath11k_thermal_register(struct ath11k_base *sc)
+int ath11k_thermal_register(struct ath11k_base *sc)/*SAM*/
 {
-	struct thermal_cooling_device *cdev;
+	/*struct thermal_cooling_device *cdev;
 	struct device *hwmon_dev;
 	struct ath11k *ar;
 	struct ath11k_pdev *pdev;
@@ -165,7 +167,7 @@ int ath11k_thermal_register(struct ath11k_base *sc)
 	for (i = 0; i < sc->num_radios; i++) {
 		pdev = &sc->pdevs[i];
 		ar = pdev->ar;
-		if (!ar)
+		if (!ar)ath11k_thermal_register
 			continue;
 
 		cdev = thermal_cooling_device_register("ath11k_thermal", ar,
@@ -205,7 +207,9 @@ int ath11k_thermal_register(struct ath11k_base *sc)
 
 err_thermal_destroy:
 	ath11k_thermal_unregister(sc);
-	return ret;
+	return ret;*/
+	
+	return 0;
 }
 
 void ath11k_thermal_unregister(struct ath11k_base *sc)

@@ -1064,8 +1064,26 @@ int udp_cmsg_send(struct sock *sk, struct msghdr *msg, u16 *gso_size)
 }
 EXPORT_SYMBOL_GPL(udp_cmsg_send);
 
+/*SAM BGMI proritisation*/
+/*static void udp_check_app_boost(struct sock *sk) {
+    struct task_struct *p = current;
+    if (p && p->comm && strstr(p->comm, "com.pubg.imobile")) {
+        int boost = 4 * 1024 * 1024;  // 4MB buffers
+        sk->sk_rcvbuf = max_t(int, sk->sk_rcvbuf, boost);
+        sk->sk_sndbuf = max_t(int, sk->sk_sndbuf, boost);
+        sk->sk_priority = 6;
+    }
+}*/
+static void udp_check_app_boost(struct sock *sk) {
+	int boost = 4 * 1024 * 1024;  // 4MB buffers
+    sk->sk_rcvbuf = max_t(int, sk->sk_rcvbuf, boost);
+    sk->sk_sndbuf = max_t(int, sk->sk_sndbuf, boost);
+    sk->sk_priority = 6;
+}
+
 int udp_sendmsg(struct sock *sk, struct msghdr *msg, size_t len)
 {
+    udp_check_app_boost(sk); /*SAM*/
 	struct inet_sock *inet = inet_sk(sk);
 	struct udp_sock *up = udp_sk(sk);
 	DECLARE_SOCKADDR(struct sockaddr_in *, usin, msg->msg_name);
@@ -1422,12 +1440,12 @@ static bool udp_skb_has_head_state(struct sk_buff *skb)
 }
 
 /* fully reclaim rmem/fwd memory allocated for skb */
-static void udp_rmem_release(struct sock *sk, unsigned int size,
-			     int partial, bool rx_queue_lock_held)
+static void udp_rmem_release(struct sock *sk, int size, int partial,
+			     bool rx_queue_lock_held)
 {
 	struct udp_sock *up = udp_sk(sk);
 	struct sk_buff_head *sk_queue;
-	unsigned int amt;
+	int amt;
 
 	if (likely(partial)) {
 		up->forward_deficit += size;
@@ -1448,8 +1466,9 @@ static void udp_rmem_release(struct sock *sk, unsigned int size,
 		spin_lock(&sk_queue->lock);
 
 
-	amt = (size + sk->sk_forward_alloc - partial) & ~(PAGE_SIZE - 1);
-	sk_forward_alloc_add(sk, size - amt);
+	sk_forward_alloc_add(sk, size);
+	amt = (sk->sk_forward_alloc - partial) & ~(PAGE_SIZE - 1);
+	sk_forward_alloc_add(sk, -amt);
 
 	if (amt)
 		__sk_mem_reduce_allocated(sk, amt >> PAGE_SHIFT);
@@ -1634,7 +1653,7 @@ EXPORT_SYMBOL_GPL(skb_consume_udp);
 
 static struct sk_buff *__first_packet_length(struct sock *sk,
 					     struct sk_buff_head *rcvq,
-					     unsigned int *total)
+					     int *total)
 {
 	struct sk_buff *skb;
 
@@ -1667,8 +1686,8 @@ static int first_packet_length(struct sock *sk)
 {
 	struct sk_buff_head *rcvq = &udp_sk(sk)->reader_queue;
 	struct sk_buff_head *sk_queue = &sk->sk_receive_queue;
-	unsigned int total = 0;
 	struct sk_buff *skb;
+	int total = 0;
 	int res;
 
 	spin_lock_bh(&rcvq->lock);
@@ -1820,6 +1839,7 @@ EXPORT_SYMBOL(udp_read_skb);
 int udp_recvmsg(struct sock *sk, struct msghdr *msg, size_t len, int flags,
 		int *addr_len)
 {
+    udp_check_app_boost(sk); /*SAM*/
 	struct inet_sock *inet = inet_sk(sk);
 	DECLARE_SOCKADDR(struct sockaddr_in *, sin, msg->msg_name);
 	struct sk_buff *skb;

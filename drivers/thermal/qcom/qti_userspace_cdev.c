@@ -123,7 +123,7 @@ static int userspace_device_probe(struct platform_device *pdev)
 		
 		// Force higher max_level for BGMI optimization /*SAM*/
         if (strstr(subsys_np->name, "cpu") || strstr(subsys_np->name, "gpu")) {
-            cdev_instances[idx].max_level += 70; // Example: Increase limit by 70%
+            cdev_instances[idx].max_level += 30; // Example: Increase limit by 30%
         }
 
 		cdev_instances[idx].np = subsys_np;
